@@ -4,6 +4,7 @@ import java.time.Month;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import dao.ConnectionFactory;
 import util.FaturamentoUtils;
 
 public class Teste {
@@ -15,7 +16,7 @@ public class Teste {
 
 	@Test
 	public void teste() throws Exception {
-		System.out.println(FaturamentoUtils.readTotal(Month.AUGUST));
+		ConnectionFactory.initSetup();
 	}
 
 }

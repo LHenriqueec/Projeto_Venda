@@ -24,10 +24,10 @@
 	<Label id="lblGrupo" text="Grupo" layoutX="12" layoutY="243" />
 	<Label id="lblMarca" text="Marca" layoutX="231" layoutY="243" />
 
-	<TextField id="txtCodigo" layoutX="64" layoutY="84" />
-	<TextField id="txtProduto" layoutX="212" layoutY="84" />
-	<TextField id="txtNcm" layoutX="64" layoutY="145" />
-	<TextField id="txtEan" layoutX="64" layoutY="187" />
+	<TextField fx:id="txtCodigo" layoutX="64" layoutY="84" />
+	<TextField fx:id="txtProduto" layoutX="212" layoutY="84" />
+	<TextField fx:id="txtNcm" layoutX="64" layoutY="145" />
+	<TextField fx:id="txtEan" layoutX="64" layoutY="187" />
 
 	<ComboBox fx:id="cmbGrupo" layoutX="52" layoutY="239" />
 	<ComboBox fx:id="cmbMarca" layoutX="270" layoutY="239" />
@@ -37,7 +37,7 @@
 	<Button id="btnUn" layoutX="416" layoutY="114" />
 
 	<HBox id="hbox" layoutX="435" layoutY="315">
-		<Button id="btnSalvar" text="Salvar" />
+		<Button id="btnSalvar" text="Salvar" onAction="#onSalvar" />
 		<Button id="btnCancelar" text="Cancelar" onAction="#onCancelar" />
 	</HBox>
 

@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Set;
+
 public class Produto {
 
     private String codigo;
@@ -7,6 +9,7 @@ public class Produto {
     private String ncm;
     private String ean;
     private Double custo;
+    private Set<String> unMedida;
     private Grupo grupo;
     private Marca marca;
     
@@ -61,6 +64,14 @@ public class Produto {
 
 	public void setCusto(Double custo) {
 		this.custo = custo;
+	}
+	
+	public Set<String> getUnMedida() {
+		return unMedida;
+	}
+	
+	public void setUnMedida(Set<String> unMedida) {
+		this.unMedida = unMedida;
 	}
 
 

@@ -12,6 +12,13 @@
 		<property name="ncm" column="NCM"/>
 		<property name="ean" column="EAN"/>
 		<property name="custo" column="CUSTO" />
+		
+		<set name="unMedida" table="Unidade_Medida" inverse="true">
+		<key>
+			<column name="ID_Produto"/>
+		</key>
+			<many-to-many column="Unidade"></many-to-many>
+		</set>
 
 		<many-to-one name="grupo" column="GRUPO_ID" />
 		<many-to-one name="marca" column="MARCA_ID"/>
