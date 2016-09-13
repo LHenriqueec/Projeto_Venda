@@ -1,0 +1,27 @@
+#root {
+	-fx-background-color: white;
+	-fx-padding: 5px;
+}
+
+#root > #vbox {
+	-fx-alignment: center;
+	-fx-spacing: 5px;
+}
+
+#root > #vbox > #ch_stPane > #lblTitle {
+	-fx-font-family: System;
+	-fx-font-size: 22px;
+	-fx-font-weight: bold;
+}
+
+#root > #vbox > #ch_stPane > #btnAtualizar {
+	-fx-background-image: url("/icons/update.png");
+	-fx-background-radius: 100%;
+	-fx-background-color: black;
+}
+
+#root > #hbox_Chart {
+	-fx-border-width: 1px;
+	-fx-border-color: black;
+	-fx-spacing: 5px;
+}

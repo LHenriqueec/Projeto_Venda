@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.password">200901</property>
+        <property name="connection.url">jdbc:mysql://localhost/iveso?serverTimezone=America/Sao_Paulo</property>
+        <property name="connection.username">Henrique</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <property name="hbm2ddl.auto">update</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="show_sql">true</property>
+        
+        <mapping resource="entity/Produto.hbm.xml"/>
+        <mapping resource="entity/Grupo.hbm.xml"/>
+        <mapping resource="entity/Marca.hbm.xml"/>
+        <mapping resource="entity/Item.hbm.xml"/>
+        <mapping resource="entity/Pedido.hbm.xml"/>
+        <mapping resource="entity/Cliente.hbm.xml"/>
+        <mapping resource="entity/Vendedor.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

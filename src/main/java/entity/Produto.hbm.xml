@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/08/2016 09:56:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping package="entity">
+    <class name="Produto" table="PRODUTO">
+		<id name="codigo" column="CODIGO">
+			<generator class="assigned" />
+		</id>
+		
+		<property name="nome" not-null="true" column="NOME"/>
+		<property name="ncm" column="NCM"/>
+		<property name="ean" column="EAN"/>
+		<property name="custo" column="CUSTO" />
+
+		<many-to-one name="grupo" column="GRUPO_ID" />
+		<many-to-one name="marca" column="MARCA_ID"/>
+		
+    </class>
+</hibernate-mapping>
