@@ -16,8 +16,19 @@
 
 #root > #vbox > #ch_stPane > #btnAtualizar {
 	-fx-background-image: url("/icons/update.png");
+	-fx-background-size: 100%;
 	-fx-background-radius: 100%;
-	-fx-background-color: black;
+	-fx-pref-height: 40px;
+	-fx-pref-width: 40px;
+	-fx-background-color: transparent;
+}
+
+#root > #vbox > #ch_stPane > #btnAtualizar:hover {
+		-fx-background-image: url("/icons/update-hover.png");
+}
+
+#root > #vbox > #ch_stPane > #btnAtualizar:pressed {
+		-fx-background-color: #a1b0bb;
 }
 
 #root > #hbox_Chart {
