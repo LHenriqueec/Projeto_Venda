@@ -19,6 +19,10 @@ public class DaoFactory {
 		return new ProdutoDAO();
 	}
 	
+	public UnidadeMedidaDAO getUnidadeMedidaDAO() {
+		return new UnidadeMedidaDAO();
+	}
+	
 	public ClienteDAO getClienteDAO() {
 		return new ClienteDAO();
 	}

@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Produto {
@@ -9,13 +10,13 @@ public class Produto {
     private String ncm;
     private String ean;
     private Double custo;
-    private Set<String> unMedida;
+    private Set<UnidadeMedida> unMedida;
     private Grupo grupo;
     private Marca marca;
     
     public Produto() {
+    	unMedida = new LinkedHashSet<>();
     }
-
     
     public String getCodigo() {
 		return codigo;
@@ -66,11 +67,11 @@ public class Produto {
 		this.custo = custo;
 	}
 	
-	public Set<String> getUnMedida() {
+	public Set<UnidadeMedida> getUnMedida() {
 		return unMedida;
 	}
 	
-	public void setUnMedida(Set<String> unMedida) {
+	public void setUnMedida(Set<UnidadeMedida> unMedida) {
 		this.unMedida = unMedida;
 	}
 

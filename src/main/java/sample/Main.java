@@ -23,7 +23,7 @@ public class Main extends Application {
     	
     	Scene scene = new Scene(root);
     	
-    	stage.setTitle("Aplicação");
+    	stage.setTitle("AplicaÃ§Ã£o");
     	stage.setScene(scene);
     	stage.setMaximized(true);
         stage.show();

@@ -88,8 +88,7 @@ public class FaturamentoUtils {
 
 	public static double readTotal(Month month) {
 		List<Faturamento> faturamentos = new ArrayList<>();
-		NodeList nodes = XmlUtils.carregarXML("fat113_1", Paths.get("D:\\faturamento.xml"));
-
+		NodeList nodes = XmlUtils.carregarXML("fat113_1", Paths.get("/home/luiz/Documentos/fat113_1.xml"));
 		try {
 			for (int i = 0; i < nodes.getLength(); i++) {
 				Faturamento faturamento = readFaturamentoToXMLCompleto(nodes.item(i).getAttributes());
@@ -111,6 +110,7 @@ public class FaturamentoUtils {
 		switch (cfop) {
 		case "5.102": return true;
 		case "5.403": return true;
+		case "5.405": return true;
 		case "6.102": return true;
 		default: return false;
 		}

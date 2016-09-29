@@ -1,27 +1,23 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 04/08/2016 09:56:26 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping package="entity">
-    <class name="Produto" table="PRODUTO">
-		<id name="codigo" column="CODIGO">
-			<generator class="assigned" />
-		</id>
-		
-		<property name="nome" not-null="true" column="NOME"/>
-		<property name="ncm" column="NCM"/>
-		<property name="ean" column="EAN"/>
-		<property name="custo" column="CUSTO" />
-		
-		<set name="unMedida" table="Unidade_Medida" inverse="true">
-		<key>
-			<column name="ID_Produto"/>
-		</key>
-			<many-to-many column="Unidade"></many-to-many>
-		</set>
+ <class name="Produto" table="PRODUTO">
+  <id column="CODIGO" name="codigo">
+   <generator class="assigned"/>
+  </id>
+  <property column="NOME" generated="never" lazy="false" name="nome" not-null="true"/>
+  <property column="NCM" generated="never" lazy="false" name="ncm"/>
+  <property column="EAN" generated="never" lazy="false" name="ean"/>
+  <property column="CUSTO" generated="never" lazy="false" name="custo"/>
 
-		<many-to-one name="grupo" column="GRUPO_ID" />
-		<many-to-one name="marca" column="MARCA_ID"/>
-		
-    </class>
+	<set name="unMedida" table="UNIDADE_PRODUTO">
+		<key column="ID_PRODUTO"/>
+		<many-to-many class="UnidadeMedida" column="ID_UNIDADE"/>
+	</set>  
+  
+  <many-to-one column="GRUPO_ID" name="grupo"/>
+  <many-to-one column="MARCA_ID" name="marca"/>
+ </class>
 </hibernate-mapping>
