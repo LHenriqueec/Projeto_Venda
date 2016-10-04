@@ -12,7 +12,7 @@
   <property column="EAN" generated="never" lazy="false" name="ean"/>
   <property column="CUSTO" generated="never" lazy="false" name="custo"/>
 
-	<set name="unMedida" table="UNIDADE_PRODUTO">
+	<set name="unMedida" table="UNIDADE_PRODUTO" inverse="false">
 		<key column="ID_PRODUTO"/>
 		<many-to-many class="UnidadeMedida" column="ID_UNIDADE"/>
 	</set>  

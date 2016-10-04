@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="entity">
-	<class name="Item" table="Item_Venda">
+	<class name="Item" table="ITEM_VENDA">
 		<id name="id" column="ID">
 			<generator class="foreign">
 				<param name="property">produto</param>
