@@ -3,6 +3,8 @@ package controller;
 import entity.Grupo;
 import entity.Marca;
 import entity.Produto;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -15,6 +17,7 @@ public class NovoProdutoController extends Controller {
 
 	private ProdutoService service;
 	private Produto produto;
+	private BooleanProperty newUn;
 	
 	@FXML
 	private ComboBox<Grupo> cmbGrupo;
@@ -28,13 +31,20 @@ public class NovoProdutoController extends Controller {
 	private TextField txtNcm;
 	@FXML
 	private TextField txtEan;
+	@FXML
+	private TextField txtUn;
+	@FXML
+	private TextField txtQtd;
 
 	@FXML
 	private void initialize() throws ServiceException {
 		service = new ProdutoService();
+		newUn = new SimpleBooleanProperty();
 		
 		cmbMarca.getItems().setAll(service.getMarcas());
 		cmbGrupo.getItems().setAll(service.getGrupos());
+		
+		txtUn.disableProperty().bind(txtUn.textProperty().isEmpty());
 	}
 
 	@FXML
@@ -47,6 +57,11 @@ public class NovoProdutoController extends Controller {
 	private void onNewGrupo() throws ServiceException {
 		CreateViewUtil.createViewByNode(getScreen("Novo_Grupo"), "Novo Grupo", "Grupo");
 		cmbGrupo.getItems().setAll(service.getGrupos());
+	}
+	
+	@FXML
+	private void onNewUnMedida() {
+		
 	}
 	
 	@FXML

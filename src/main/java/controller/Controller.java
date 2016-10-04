@@ -24,6 +24,7 @@ public class Controller {
 		loadScreen("Novo_Produto", "/view/Novo_Produto.fxml");
 		loadScreen("Nova_Marca", "/view/Nova_Marca.fxml");
 		loadScreen("Novo_Grupo", "/view/Novo_Grupo.fxml");
+		loadScreen("Nova_Un_Medida", "/view/Nova_Un_Medida.fxml");
 		pane = (StackPane) centerNode.get();
 	}
 
