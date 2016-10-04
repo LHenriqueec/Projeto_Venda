@@ -11,6 +11,14 @@
 	-fx-font-family: System;
 }
 
+#rootPane > #lblUn {
+	-fx-font-size: 9px;
+}
+
+#rootPane > #lblQtd {
+	-fx-font-size: 9px;
+}
+
 #rootPane > #txtCodigo {
 	-fx-pref-width: 83px;
 	-fx-pref-height: 25;
@@ -31,6 +39,15 @@
 	-fx-pref-height: 25px;
 }
 
+#rootPane > #txtUn {
+	-fx-pref-width: 51px;
+	-fx-pref-height: 26px;
+}
+
+#rootPane > #txtQtd {
+	-fx-pref-width: 51px;
+	-fx-pref-height: 26px;
+}
 
 #rootPane > #hbox {
 	-fx-spacing: 5px;
