@@ -15,7 +15,7 @@ public class DAO<T> {
 	
 	public DAO(Class<T> clazz) {
 		this.clazz = clazz;
-		session = ConnectionFactory.getSession();;
+		session = ConnectionFactory.getSession();
 	}
 	
 	public void salvar(T obj) throws DAOException {
@@ -33,9 +33,9 @@ public class DAO<T> {
 	
 	public T load(Serializable id) throws DAOException {
 		
-		try {
+		try (Session sess = session) {
 			
-			return session.load(clazz, id);
+			return sess.load(clazz, id);
 			
 		} catch (HibernateException e) {
 			throw new DAOException(e);
