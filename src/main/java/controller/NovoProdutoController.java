@@ -40,11 +40,13 @@ public class NovoProdutoController extends Controller {
 	private void initialize() throws ServiceException {
 		service = new ProdutoService();
 		newUn = new SimpleBooleanProperty();
+		produto = service.getProduto();
 		
 		cmbMarca.getItems().setAll(service.getMarcas());
 		cmbGrupo.getItems().setAll(service.getGrupos());
 		
 		txtUn.disableProperty().bind(txtUn.textProperty().isEmpty());
+		bind(produto);
 	}
 
 	@FXML
@@ -67,10 +69,18 @@ public class NovoProdutoController extends Controller {
 	@FXML
 	private void onSalvar() throws ServiceException {
 		service.salvar(produto);
+		StageGroup.finishStage("ProdutoNovo");
 	}
 
 	@FXML
 	private void onCancelar() {
 		StageGroup.finishStage("ProdutoNovo");
+	}
+	
+	private void bind(Produto produto) {
+		txtCodigo.textProperty().bindBidirectional(produto.codigoProperty());
+		txtProduto.textProperty().bindBidirectional(produto.nomeProperty());
+		txtEan.textProperty().bindBidirectional(produto.eanProperty());
+		txtNcm.textProperty().bindBidirectional(produto.ncmProperty());
 	}
 }

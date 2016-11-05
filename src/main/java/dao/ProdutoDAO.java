@@ -22,8 +22,18 @@ public class ProdutoDAO extends DAO<Produto> {
 	public void salvarLista(List<Produto> produtos) throws DAOException {
 		try {
 			
+			int batch = 50;
+			
 			session.beginTransaction();
-			produtos.forEach(session::saveOrUpdate);
+			for (int i = 0; i < produtos.size(); i++) {
+				Produto produto = produtos.get(i);
+				session.persist(produto);
+				
+				if (i > 0 && i % batch == 0) {
+					session.flush();
+					session.clear();
+				}
+			}
 			session.getTransaction().commit();
 		
 		} catch(HibernateException e) {

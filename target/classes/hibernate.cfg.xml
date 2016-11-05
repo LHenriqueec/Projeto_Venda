@@ -7,7 +7,7 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.password">200901</property>
         <property name="connection.url">jdbc:mysql://localhost/iveso?serverTimezone=America/Sao_Paulo</property>
-        <property name="connection.username">henrique</property>
+        <property name="connection.username">Henrique</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         
         <property name="hbm2ddl.auto">update</property>

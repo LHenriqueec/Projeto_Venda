@@ -107,6 +107,7 @@ public class FaturamentoUtils {
 	}
 
 	private static boolean isCfopVenda(String cfop) {
+		//TODO: fazer a leitura dos CFOPs de venda através de um arquivo .property
 		switch (cfop) {
 		case "5.102": return true;
 		case "5.403": return true;

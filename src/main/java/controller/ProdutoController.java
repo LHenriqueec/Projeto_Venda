@@ -2,21 +2,20 @@ package controller;
 
 import java.io.File;
 
-import dao.DAOException;
-import dao.DaoFactory;
-import dao.ProdutoDAO;
 import entity.Produto;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import service.ProdutoService;
+import service.ServiceException;
 import util.CreateViewUtil;
 import util.XmlUtils;
 
 public class ProdutoController extends Controller {
 
-	private ProdutoDAO dao;
+	private ProdutoService service;
 
 
 	@FXML
@@ -24,10 +23,10 @@ public class ProdutoController extends Controller {
 
 	@FXML
 	private void initialize() {
-		dao = DaoFactory.getInstance().getProdutoDAO();
+		service = new ProdutoService();
 		try {
-			tblProduto.setItems(FXCollections.observableList(dao.getProdutos()));
-		} catch (DAOException e) {
+			tblProduto.setItems(FXCollections.observableList(service.getProdutos()));
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}

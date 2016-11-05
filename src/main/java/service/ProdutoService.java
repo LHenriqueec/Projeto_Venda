@@ -4,13 +4,40 @@ import java.util.List;
 
 import dao.DAOException;
 import dao.DaoFactory;
+import dao.ProdutoDAO;
 import entity.Grupo;
 import entity.Marca;
 import entity.Produto;
 
 public class ProdutoService {
 	
+	private ProdutoDAO dao;
+	private static Produto produto;
 
+	public ProdutoService() {
+		dao = DaoFactory.getInstance().getProdutoDAO();
+		
+		if (produto == null) {
+			produto = new Produto();
+		}
+	}
+	
+	public Produto getProduto() {
+		return produto;
+	}
+	
+	public void setProduto(Produto produto) {
+		ProdutoService.produto = produto;
+	}
+	
+	public List<Produto> getProdutos() throws ServiceException {
+		try {
+			return dao.getProdutos();
+		} catch (DAOException e) {
+			throw new ServiceException();
+		}
+	}
+	
 	public List<Marca> getMarcas() throws ServiceException {
 		try {
 			
@@ -36,6 +63,16 @@ public class ProdutoService {
 			
 			DaoFactory.getInstance().getProdutoDAO().salvar(produto);
 			
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+	
+	public void salvarLista(List<Produto> produtos) throws ServiceException {
+		try {
+		
+			dao.salvarLista(produtos);
+		
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}

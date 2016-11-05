@@ -22,7 +22,7 @@ public class DAO<T> {
 		try {
 			
 			session.beginTransaction();
-			session.save(obj);
+			session.saveOrUpdate(obj);
 			session.getTransaction().commit();
 			
 		} catch (HibernateException e) {
