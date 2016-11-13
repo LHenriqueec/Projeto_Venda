@@ -45,12 +45,18 @@
 		<Button id="btnCancelar" text="Cancelar" onAction="#onCancelar" />
 	</HBox>
 
-	<TableView id="tblUn" editable="true" layoutX="299" layoutY="174">
+	<TableView fx:id="tbUnidadeMedidas" editable="true" layoutX="299" layoutY="174">
 		<columns>
 			<TableColumn text="Unidade">
+				<cellValueFactory>
+					<PropertyValueFactory property="unidade" />
+				</cellValueFactory>
 			</TableColumn>
 
 			<TableColumn text="Quantidade">
+				<cellValueFactory>
+					<PropertyValueFactory property="quantidade" />
+				</cellValueFactory>
 			</TableColumn>
 		</columns>
 

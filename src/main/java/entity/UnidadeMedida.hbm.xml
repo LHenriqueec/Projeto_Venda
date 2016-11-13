@@ -8,8 +8,8 @@
 			<generator class="native"/>
 		</id>
 		
-		<property name="unidade" column="UNIDADE"/>
-		<property name="quantidade" column="QUANTIDADE"/>
+		<property name="unidade" column="UNIDADE" type="string"/>
+		<property name="quantidade" column="QUANTIDADE" type="integer"/>
 		
 		<set name="produtos" table="UNIDADE_PRODUTO" inverse="true">
 			<key column="ID_UNIDADE"/>

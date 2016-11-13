@@ -3,11 +3,14 @@ package controller;
 import entity.Grupo;
 import entity.Marca;
 import entity.Produto;
+import entity.UnidadeMedida;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.util.converter.NumberStringConverter;
 import service.ProdutoService;
 import service.ServiceException;
 import util.CreateViewUtil;
@@ -23,6 +26,8 @@ public class NovoProdutoController extends Controller {
 	private ComboBox<Grupo> cmbGrupo;
 	@FXML
 	private ComboBox<Marca> cmbMarca;
+	@FXML
+	private TableView<UnidadeMedida> tbUnidadeMedidas;
 	@FXML
 	private TextField txtCodigo;
 	@FXML
@@ -45,7 +50,8 @@ public class NovoProdutoController extends Controller {
 		cmbMarca.getItems().setAll(service.getMarcas());
 		cmbGrupo.getItems().setAll(service.getGrupos());
 		
-		txtUn.disableProperty().bind(txtUn.textProperty().isEmpty());
+		txtUn.disableProperty().bind(newUn.not());
+		txtQtd.disableProperty().bind(newUn.not());
 		bind(produto);
 	}
 
@@ -63,11 +69,29 @@ public class NovoProdutoController extends Controller {
 	
 	@FXML
 	private void onNewUnMedida() {
-		
+		if (newUn.get()) {
+			UnidadeMedida um = new UnidadeMedida();
+			
+			if (!txtUn.getText().isEmpty() && !txtQtd.getText().isEmpty()) {
+				um.setUnidade(txtUn.getText().toUpperCase());
+				um.setQuantidade(Integer.parseInt(txtQtd.getText()));
+				
+				produto.getUnMedida().add(um);
+				tbUnidadeMedidas.getItems().add(um);
+			}			
+			txtUn.clear();
+			txtQtd.clear();
+		}
+		newUn.set(!newUn.get());
+		txtUn.requestFocus();
 	}
 	
 	@FXML
 	private void onSalvar() throws ServiceException {
+		produto.setGrupo(cmbGrupo.getValue());
+		produto.setMarca(cmbMarca.getValue());
+		
+		tbUnidadeMedidas.getItems().forEach(produto.getUnMedida()::add);
 		service.salvar(produto);
 		StageGroup.finishStage("ProdutoNovo");
 	}

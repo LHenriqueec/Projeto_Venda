@@ -11,7 +11,7 @@
 	-fx-font-family: System;
 }
 
-#rootPane > #lblUn {
+#rootPane > #lblUn{
 	-fx-font-size: 9px;
 }
 
@@ -94,7 +94,8 @@
 	-fx-background-color: #a1b0bb;
 }
 
-#rootPane > #tblUn {
+#rootPane > #tbUnidadeMedidas {
+	-fx-font-size: 10px;
 	-fx-pref-width: 288px;
 	-fx-pref-height: 67px;
 }

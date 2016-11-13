@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javafx.beans.property.DoubleProperty;
@@ -26,115 +27,136 @@ public class Produto {
     	ean = new SimpleStringProperty();
     	custo = new SimpleDoubleProperty();
     	peso = new SimpleDoubleProperty();
+    	unMedida = new LinkedHashSet<>();
     }
     
     public String getCodigo() {
 		return codigo.get();
 	}
 
+    public String getNome() {
+		return nome.get();
+	}
+
+    public String getNcm() {
+		return ncm.get();
+	}
+
+    public String getEan() {
+		return ean.get();
+	}
+
+    public double getCusto() {
+		return custo.get();
+	}
+    
+
+    public double getPeso() {
+		return peso.get();
+	}
+	
+    public Set<UnidadeMedida> getUnMedida() {
+    	return unMedida;
+    }
+    
+    public Grupo getGrupo() {
+		return grupo;
+	}
+
+    public Marca getMarca() {
+		return marca;
+	}
 
 	public void setCodigo(String codigo) {
 		this.codigo.set(codigo);;
 	}
-	
-	public StringProperty codigoProperty() {
-		return codigo;
-	}
-
-
-	public String getNome() {
-		return nome.get();
-	}
-
 
 	public void setNome(String nome) {
 		this.nome.set(nome);
 	}
 	
-	public StringProperty nomeProperty() {
-		return nome;
-	}
-
-
-	public String getNcm() {
-		return ncm.get();
-	}
-
-
 	public void setNcm(String ncm) {
 		this.ncm.set(ncm);
+	}
+
+	public void setEan(String ean) {
+		this.ean.set(ean);
+	}
+
+	public void setCusto(double custo) {
+		this.custo.set(custo);
+	}
+	
+	public void setPeso(double peso) {
+		this.peso.set(peso);
+	}
+
+	public void setUnMedida(Set<UnidadeMedida> unMedida) {
+		this.unMedida = unMedida;
+	}
+	
+	
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+	
+	
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
+	public StringProperty codigoProperty() {
+		return codigo;
+	}
+
+	
+	public StringProperty nomeProperty() {
+		return nome;
 	}
 	
 	public StringProperty ncmProperty() {
 		return ncm;
 	}
-
-
-	public String getEan() {
-		return ean.get();
-	}
-
-
-	public void setEan(String ean) {
-		this.ean.set(ean);
-	}
 	
 	public StringProperty eanProperty() {
 		return ean;
-	}
-
-
-	public Double getCusto() {
-		return custo.get();
-	}
-
-
-	public void setCusto(Double custo) {
-		this.custo.set(custo);
 	}
 	
 	public DoubleProperty custoProperty() {
 		return custo;
 	}
 	
-	public Double getPeso() {
-		return peso.get();
-	}
-	
-	public void setPeso(Double peso) {
-		this.peso.set(peso);
-	}
-	
 	public DoubleProperty pesoProperty() {
 		return peso;
 	}
 	
-	public Set<UnidadeMedida> getUnMedida() {
-		return unMedida;
-	}
 	
-	public void setUnMedida(Set<UnidadeMedida> unMedida) {
-		this.unMedida = unMedida;
-	}
-
-	public Grupo getGrupo() {
-		return grupo;
-	}
-
-
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
-	}
-
-	public Marca getMarca() {
-		return marca;
-	}
-
-
-	public void setMarca(Marca marca) {
-		this.marca = marca;
-	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.get().equals(other.codigo.get()))
+			return false;
+		return true;
+	}
+
 	@Override
     public String toString() {
     	StringBuffer buff = new StringBuffer();

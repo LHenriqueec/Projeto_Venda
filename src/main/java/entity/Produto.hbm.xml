@@ -10,7 +10,7 @@
   <property column="NOME" generated="never" lazy="false" name="nome" not-null="true" type="string"/>
   <property column="NCM" generated="never" lazy="false" name="ncm" type="string"/>
   <property column="EAN" generated="never" lazy="false" name="ean" type="string"/>
-  <property column="CUSTO" generated="never" lazy="false" name="custo" type="double"/>
+  <property column="CUSTO" generated="never" lazy="false" name="custo" type="double" />
 
 	<set name="unMedida" table="UNIDADE_PRODUTO" inverse="false">
 		<key column="ID_PRODUTO"/>

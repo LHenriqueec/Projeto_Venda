@@ -17,9 +17,7 @@ public class ProdutoService {
 	public ProdutoService() {
 		dao = DaoFactory.getInstance().getProdutoDAO();
 		
-		if (produto == null) {
-			produto = new Produto();
-		}
+		produto = new Produto();
 	}
 	
 	public Produto getProduto() {
@@ -60,7 +58,7 @@ public class ProdutoService {
 	
 	public void salvar(Produto produto) throws ServiceException {
 		try {
-			
+			DaoFactory.getInstance().getUnidadeMedidaDAO().salvarLista(produto.getUnMedida());
 			DaoFactory.getInstance().getProdutoDAO().salvar(produto);
 			
 		} catch (DAOException e) {

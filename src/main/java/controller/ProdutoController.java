@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.util.List;
 
 import entity.Produto;
 import javafx.collections.FXCollections;
@@ -47,6 +48,18 @@ public class ProdutoController extends Controller {
 	@FXML
 	private void onScreenNewProduto() {
 		CreateViewUtil.createViewByNode(getScreen("Novo_Produto"), "Novo Produto", "ProdutoNovo");
+	}
+	
+	private void verifyExist() {
+		try {
+			List<Produto> produtos = service.getProdutos();
+			//TODO: Colocar os itens, repetidos carregados do XML e do Banco de Dados, em negrito e vermelho
+			tblProduto.getItems().filtered(produtos::contains);
+			
+
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
 	}
 }
 
