@@ -20,7 +20,6 @@ public class DAO<T> {
 	
 	public void salvar(T obj) throws DAOException {
 		try {
-			
 			session.beginTransaction();
 			session.saveOrUpdate(obj);
 			session.getTransaction().commit();
@@ -28,14 +27,16 @@ public class DAO<T> {
 		} catch (HibernateException e) {
 			session.getTransaction().rollback();
 			throw new DAOException(e);
+		} finally {
+			session.close();
 		}
 	}
 	
 	public T load(Serializable id) throws DAOException {
 		
-		try (Session sess = session) {
+		try {
 			
-			return sess.load(clazz, id);
+			return session.load(clazz, id);
 			
 		} catch (HibernateException e) {
 			throw new DAOException(e);
@@ -53,6 +54,8 @@ public class DAO<T> {
 		} catch (HibernateException e) {
 			session.getTransaction().rollback();
 			throw new DAOException(e);
+		} finally {
+			session.close();
 		}
 		
 	}

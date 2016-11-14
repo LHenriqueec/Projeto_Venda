@@ -16,17 +16,20 @@ public class UnidadeMedidaDAO extends DAO<UnidadeMedida> {
 	public void salvarLista(Set<UnidadeMedida> unidadeMedidas) {
 		
 		int batch = 5;
-		
-		session.beginTransaction();
-		unidadeMedidas.forEach(um -> {
-			countIncrement();
-			session.persist(um);
-			if(count > 0 && count % batch == 0) {
-				session.flush();
-				session.clear();
-			}
-		});
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			unidadeMedidas.forEach(um -> {
+				countIncrement();
+				session.persist(um);
+				if(count > 0 && count % batch == 0) {
+					session.flush();
+					session.clear();
+				}
+			});
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
 	}
 	
 	private void countIncrement() {

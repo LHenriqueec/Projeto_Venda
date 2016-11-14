@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import dao.ConnectionFactory;
 import dao.DAOException;
 import dao.DaoFactory;
 import dao.ProdutoDAO;
@@ -25,7 +26,15 @@ public class ProdutoService {
 	}
 	
 	public void setProduto(Produto produto) {
-		ProdutoService.produto = produto;
+		ProdutoService.produto.setCodigo(produto.getCodigo());
+		ProdutoService.produto.setNome(produto.getNome());
+		ProdutoService.produto.setNcm(produto.getNcm());
+		ProdutoService.produto.setEan(produto.getEan());
+		ProdutoService.produto.setPeso(produto.getPeso());
+		ProdutoService.produto.setCusto(produto.getCusto());
+		ProdutoService.produto.setGrupo(produto.getGrupo());
+		ProdutoService.produto.setMarca(produto.getMarca());
+		ProdutoService.produto.setUnMedida(produto.getUnMedida());
 	}
 	
 	public List<Produto> getProdutos() throws ServiceException {
@@ -58,6 +67,7 @@ public class ProdutoService {
 	
 	public void salvar(Produto produto) throws ServiceException {
 		try {
+			
 			DaoFactory.getInstance().getUnidadeMedidaDAO().salvarLista(produto.getUnMedida());
 			DaoFactory.getInstance().getProdutoDAO().salvar(produto);
 			

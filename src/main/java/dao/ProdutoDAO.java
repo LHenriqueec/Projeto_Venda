@@ -38,6 +38,8 @@ public class ProdutoDAO extends DAO<Produto> {
 		
 		} catch(HibernateException e) {
 			throw new DAOException(e);
+		} finally {
+			session.close();
 		}
 	}
 }
