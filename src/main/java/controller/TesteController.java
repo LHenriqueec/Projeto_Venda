@@ -51,7 +51,7 @@ public class TesteController extends Controller {
 		ObservableList<Produto> produtos = FXCollections.observableArrayList(XmlUtils.readProduto(nodes));
 		List<Produto> produtosDAO = service.getProdutos();
 		
-		List<Produto> listContains = produtos.stream().filter(produtosDAO::contains).collect(Collectors.toList());
+		List<Produto> listContains = produtosDAO.stream().filter(produtos::contains).collect(Collectors.toList());
 		List<Produto> listNotContains = produtos.stream().filter(p -> !produtosDAO.contains(p)).collect(Collectors.toList());
 		
 		tblProdutos.setItems(FXCollections.observableArrayList(listContains));
@@ -68,13 +68,11 @@ public class TesteController extends Controller {
 			try {
 				if (e.getClickCount() == 2 && !tblProdutos.getSelectionModel().isEmpty()) {
 					int index = tblProdutos.getSelectionModel().getSelectedIndex();
-					Produto produto = tblProdutos.getSelectionModel().getSelectedItem();
-					
-					//Usando um teste
-					Produto produto2 = service.getProduto();
-					changeProduto(service.getProduto(), produto);
+					Produto produto = tblProdutos.getItems().get(index);
+					service.setProduto(produto);
 					CreateViewUtil.createViewByNode(getScreen("Novo_Produto"), "Novo Produto", "ProdutoNovo");
-					tblProdutos.getItems().set(index, service.getProduto());
+					changeProduto(produto, service.getProduto());
+					tblProdutos.getItems().set(index, produto);
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
