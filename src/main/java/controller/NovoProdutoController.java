@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.util.converter.NumberStringConverter;
 import service.ProdutoService;
 import service.ServiceException;
 import util.CreateViewUtil;

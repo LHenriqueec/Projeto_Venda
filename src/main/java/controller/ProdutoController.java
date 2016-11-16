@@ -50,6 +50,7 @@ public class ProdutoController extends Controller {
 		CreateViewUtil.createViewByNode(getScreen("Novo_Produto"), "Novo Produto", "ProdutoNovo");
 	}
 	
+	@SuppressWarnings("unused")
 	private void verifyExist() {
 		try {
 			List<Produto> produtos = service.getProdutos();
