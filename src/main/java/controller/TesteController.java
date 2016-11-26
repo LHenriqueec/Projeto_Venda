@@ -32,7 +32,7 @@ public class TesteController extends Controller {
 
 	@FXML
 	private void initialize() {
-		service = new ProdutoService();
+		service = ProdutoService.getService();
 		handlerTableAction();
 	}
 
@@ -71,24 +71,25 @@ public class TesteController extends Controller {
 					Produto produto = tblProdutos.getItems().get(index);
 					service.setProduto(produto);
 					CreateViewUtil.createViewByNode(getScreen("Novo_Produto"), "Novo Produto", "ProdutoNovo");
-					changeProduto(produto, service.getProduto());
 					tblProdutos.getItems().set(index, produto);
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		});
-	}
-	
-	private void changeProduto(Produto oldProduto, Produto newProduto) {
-		oldProduto.setCodigo(newProduto.getCodigo());
-		oldProduto.setCusto(newProduto.getCusto());
-		oldProduto.setEan(newProduto.getEan());
-		oldProduto.setGrupo(newProduto.getGrupo());
-		oldProduto.setMarca(newProduto.getMarca());
-		oldProduto.setNcm(newProduto.getNcm());
-		oldProduto.setNome(newProduto.getNome());
-		oldProduto.setPeso(newProduto.getPeso());
-		oldProduto.setUnMedida(newProduto.getUnMedida());
+		
+		tblNotFind.setOnMouseClicked(e -> {
+			try {
+				if (e.getClickCount() == 2 && !tblProdutos.getSelectionModel().isEmpty()) {
+					int index = tblProdutos.getSelectionModel().getSelectedIndex();
+					Produto produto = tblProdutos.getItems().get(index);
+					service.setProduto(produto);
+					CreateViewUtil.createViewByNode(getScreen("Novo_Produto"), "Novo Produto", "ProdutoNovo");
+					tblProdutos.getItems().set(index, produto);
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		});
 	}
 }
