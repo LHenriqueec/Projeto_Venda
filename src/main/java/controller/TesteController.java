@@ -67,11 +67,7 @@ public class TesteController extends Controller {
 		tblProdutos.setOnMouseClicked(e -> {
 			try {
 				if (e.getClickCount() == 2 && !tblProdutos.getSelectionModel().isEmpty()) {
-					int index = tblProdutos.getSelectionModel().getSelectedIndex();
-					Produto produto = tblProdutos.getItems().get(index);
-					service.setProduto(produto);
-					CreateViewUtil.createViewByNode(getScreen("Novo_Produto"), "Novo Produto", "ProdutoNovo");
-					tblProdutos.getItems().set(index, produto);
+					updateTable(tblProdutos, false);
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -80,16 +76,26 @@ public class TesteController extends Controller {
 		
 		tblNotFind.setOnMouseClicked(e -> {
 			try {
-				if (e.getClickCount() == 2 && !tblProdutos.getSelectionModel().isEmpty()) {
-					int index = tblProdutos.getSelectionModel().getSelectedIndex();
-					Produto produto = tblProdutos.getItems().get(index);
-					service.setProduto(produto);
-					CreateViewUtil.createViewByNode(getScreen("Novo_Produto"), "Novo Produto", "ProdutoNovo");
-					tblProdutos.getItems().set(index, produto);
+				if (e.getClickCount() == 2 && !tblNotFind.getSelectionModel().isEmpty()) {
+					updateTable(tblNotFind, true);
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		});
+	}
+	
+	private void updateTable(TableView<Produto> tableProdutos, boolean isNew) throws ServiceException {
+		int index = tableProdutos.getSelectionModel().getSelectedIndex();
+		Produto produto = tableProdutos.getItems().get(index);
+		service.setProduto(produto);
+		CreateViewUtil.createViewByNode(getScreen("Novo_Produto"), "Novo Produto", "ProdutoNovo");
+		tableProdutos.getItems().set(index, produto);
+		service.salvar(produto);
+		
+		if (isNew) {
+			tableProdutos.getItems().remove(produto);
+			tblProdutos.getItems().add(produto);
+		}
 	}
 }

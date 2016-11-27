@@ -5,7 +5,9 @@ import entity.Marca;
 import entity.Produto;
 import entity.UnidadeMedida;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
@@ -20,6 +22,7 @@ public class NovoProdutoController extends Controller {
 	private ProdutoService service;
 	private Produto produto;
 	private BooleanProperty newUn;
+	private ObjectProperty<Grupo> grupoProprety;
 
 	@FXML
 	private ComboBox<Grupo> cmbGrupo;
@@ -45,6 +48,7 @@ public class NovoProdutoController extends Controller {
 		service = ProdutoService.getService();
 		newUn = new SimpleBooleanProperty();
 		produto = service.getProduto();
+		grupoProprety = new SimpleObjectProperty<>(produto.getGrupo(), "grupo");
 
 		cmbMarca.getItems().setAll(service.getMarcas());
 		cmbGrupo.getItems().setAll(service.getGrupos());
@@ -92,7 +96,7 @@ public class NovoProdutoController extends Controller {
 
 		tbUnidadeMedidas.getItems().forEach(produto.getUnMedida()::add);
 		StageGroup.finishStage("ProdutoNovo");
-		service.salvar(produto);
+		service.update(produto);
 	}
 
 	@FXML
